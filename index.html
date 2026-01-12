@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Khám Y Khoa Nhật Bổn - Chung Tay Chăm Sóc Sức Khỏe Cộng Đồng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0056b3; /* Xanh y tế đậm */
+            --secondary-color: #00a8cc; /* Xanh sáng */
+            --accent-color: #e63946; /* Màu đỏ cho hotline */
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        /* HEADER */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn-hotline {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        
+        .btn-hotline:hover { background: #c92a36; }
+
+        /* HERO SECTION */
+        .hero {
+            /* Sử dụng ảnh placeholder cho banner chính */
+            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 168, 204, 0.6)), url('https://placehold.co/1920x1080?text=Phòng+Khám+Y+Khoa+Nhật+Bổn');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* SECTION COMMON STYLES */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 0 auto;
+        }
+
+        /* WHY CHOOSE US */
+        .why-us {
+            background: var(--light-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* SPECIALTIES (Đã cập nhật thêm ảnh) */
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Tăng min-width một chút */
+            gap: 30px;
+        }
+
+        .spec-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--white);
+            transition: 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+             box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+        /* CSS mới cho hình ảnh placeholder */
+        .spec-img-placeholder {
+            width: 100%;
+            height: 220px; /* Chiều cao cố định để đồng bộ */
+            object-fit: cover; /* Đảm bảo ảnh phủ kín khung mà không bị méo */
+            display: block;
+            background-color: #e0e0e0; /* Màu nền khi ảnh chưa tải */
+        }
+
+        .spec-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .spec-header h3 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .spec-body {
+            padding: 20px;
+        }
+
+        /* MISSION & VALUES */
+        .mission-values {
+            background: #f0f4f8;
+        }
+
+        .mv-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media(max-width: 768px) {
+            .mv-wrapper { grid-template-columns: 1fr; }
+        }
+
+        .mission-list li {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .check-icon {
+            color: #28a745; /* Màu xanh lá cho icon check */
+            min-width: 20px;
+            margin-top: 5px;
+        }
+
+        .value-item {
+            background: var(--white);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .value-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a252f;
+            color: #bdc3c7;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+
+        .footer-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .footer-info i {
+            color: var(--secondary-color);
+            margin-top: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+        .social-links a:hover { background: var(--secondary-color); }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Nav Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li { padding: 15px 0; }
+
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content h1 { font-size: 2rem; }
+            .btn-hotline.hidden-mobile { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <i class="fas fa-heartbeat fa-lg"></i> Y Khoa Nhật Bổn
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" onclick="toggleMenu()">Giới thiệu</a></li>
+                <li><a href="#why-us" onclick="toggleMenu()">Tại sao chọn?</a></li>
+                <li><a href="#specialties" onclick="toggleMenu()">Chuyên khoa</a></li>
+                <li><a href="#values" onclick="toggleMenu()">Sứ mệnh & Giá trị</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Liên hệ</a></li>
+            </ul>
+            <a href="tel:0908723789" class="btn-hotline hidden-mobile">
+                <i class="fas fa-phone-alt"></i> 0908 723 789
+            </a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Phòng Khám Y Khoa Nhật Bổn</h1>
+            <p>"Chung tay chăm sóc sức khỏe cộng đồng" - Hệ thống phòng khám chất lượng, chuyên nghiệp và đáng tin cậy.</p>
+            <br>
+            <a href="#contact" class="btn-hotline" style="background: var(--white); color: var(--accent-color);">Đặt Lịch Ngay</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Về Chúng Tôi</h2>
+                <div class="line"></div>
+            </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                <p>Phòng khám Y khoa Nhật Bổn toạ lạc tại số <b>65 Nguyễn Hữu Trí, ấp 57, xã Tân Nhựt, Thành phố Hồ Chí Minh</b>.</p>
+                <br>
+                <p>Từ những ngày đầu thành lập, chúng tôi đã xác định rõ sứ mệnh mang đến dịch vụ chăm sóc sức khỏe tốt nhất cho người dân địa phương và các khu vực lân cận với mục tiêu xây dựng hệ thống phòng khám chất lượng, chuyên nghiệp và đáng tin cậy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tại Sao Chọn Chúng Tôi?</h2>
+                <div class="line"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-user-md feature-icon"></i>
+                    <h3>Đội Ngũ Bác Sĩ</h3>
+                    <p>Giàu kinh nghiệm, chú trọng vào chuyên môn, tay nghề và y đức của từng nhân viên y tế.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-microscope feature-icon"></i>
+                    <h3>Trang Thiết Bị</h3>
+                    <p>Hiện đại, được nhập khẩu từ các nước tiên tiến trên thế giới về y khoa.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-invoice-dollar feature-icon"></i>
+                    <h3>Giá Cả Minh Bạch</h3>
+                    <p>Công khai với từng bệnh nhân, đảm bảo rõ ràng, minh bạch và hợp lý.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart feature-icon"></i>
+                    <h3>Dịch Vụ Tận Tâm</h3>
+                    <p>Chăm sóc chu đáo, tận tình hết mình từ khâu đón tiếp, thăm khám đến khi ra về.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specialties">
+        <div class="container">
+            <div class="section-title">
+                <h2>Các Chuyên Khoa</h2>
+                <div class="line"></div>
+                <p style="margin-top: 15px; color: #666;">Chúng tôi cung cấp đa dạng các dịch vụ y tế chất lượng cao</p>
+            </div>
+            <div class="specialties-grid">
+                <div class="spec-card">
+                    <img src="img/nhakhoa.png" alt="Minh họa Nha Khoa" class="spec-img-placeholder">
+                    <div class="spec-header">
+                        <i class="fas fa-tooth fa-lg"></i>
+                        <h3>NHA KHOA</h3>
+                    </div>
+                    <div class="spec-body">
+                        <p>Chuyên khoa mũi nhọn được chúng tôi chú trọng phát triển và đầu tư mạnh mẽ bởi nhu cầu chăm sóc răng, miệng ngày một tăng cao.</p>
+                    </div>
+                </div>
+
+                <div class="spec-card">
+                     <img src="img/sieuam.png" alt="Minh họa Siêu Âm" class="spec-img-placeholder">
+                    <div class="spec-header">
+                        <i class="fas fa-wave-square fa-lg"></i>
+                        <h3>SIÊU ÂM</h3>
+                    </div>
+                    <div class="spec-body">
+                        <p>Siêu âm kỹ thuật số công nghệ cao được chúng tôi áp dụng trong việc thăm, khám tình trạng sức khỏe của bệnh nhân đạt kết quả cao.</p>
+                    </div>
+                </div>
+
+                <div class="spec-card">
+                     <img src="img/xquang.png" alt="Minh họa X-Quang" class="spec-img-placeholder">
+                    <div class="spec-header">
+                        <i class="fas fa-x-ray fa-lg"></i>
+                        <h3>X-QUANG</h3>
+                    </div>
+                    <div class="spec-body">
+                        <p>X-quang là phương pháp chẩn đoán hình ảnh tiên tiến được chúng tôi đầu tư nhằm phát hiện sớm các bệnh lý đa xương khớp.</p>
+                    </div>
+                </div>
+
+                <div class="spec-card">
+                     <img src="img/hohap.png" alt="Minh họa Nội Khoa" class="spec-img-placeholder">
+                    <div class="spec-header">
+                        <i class="fas fa-stethoscope fa-lg"></i>
+                        <h3>HÔ HẤP - TIM MẠCH - TIÊU HOÁ</h3>
+                    </div>
+                    <div class="spec-body">
+                        <p>Các bệnh lý về đường hô hấp, tim mạch hay đường tiêu hoá được đội ngũ y, bác sĩ tại phòng khám quan tâm và điều trị hiệu quả.</p>
+                    </div>
+                </div>
+
+                <div class="spec-card">
+                     <img src="img/xetnghiem.png" alt="Minh họa Xét Nghiệm" class="spec-img-placeholder">
+                    <div class="spec-header">
+                        <i class="fas fa-vial fa-lg"></i>
+                        <h3>XÉT NGHIỆM</h3>
+                    </div>
+                    <div class="spec-body">
+                        <p>Tại Phòng khám có phòng xét nghiệm đạt chuẩn của Bộ y tế về chất lượng, đảm bảo kết quả xét nghiệm chính xác cho bệnh nhân.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="mission-values">
+        <div class="container">
+            <div class="mv-wrapper">
+                <div class="mission-col">
+                    <h3 style="margin-bottom: 30px; color: var(--primary-color); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-flag"></i> SỨ MỆNH CAO ĐẸP
+                    </h3>
+                    <ul class="mission-list">
+                        <li>
+                            <i class="fas fa-check-circle check-icon fa-lg"></i>
+                            <span>Đồng hành cùng hệ thống Y Tế TPHCM trong việc chăm sóc sức khỏe toàn diện cho người dân.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle check-icon fa-lg"></i>
+                            <span>Góp phần đảm bảo chất lượng cuộc sống, đặc biệt là sức khỏe về tinh thần, mang sức khỏe tốt đến gần hơn với mọi người.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle check-icon fa-lg"></i>
+                            <span>Xây dựng hệ thống quản lý chất lượng toàn diện, lấy khách hàng làm trọng tâm và an toàn của bệnh nhân là yếu tố sống còn.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="values-col">
+                    <h3 style="margin-bottom: 30px; color: var(--primary-color); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-gem"></i> GIÁ TRỊ CỐT LÕI
+                    </h3>
+                    
+                    <div class="value-item">
+                        <h4><i class="fas fa-user-friends"></i> GIÁ TRỊ VỀ CON NGƯỜI</h4>
+                        <p>Là tài sản, sức mạnh đầu tiên. Mỗi cá nhân đều có cơ hội phát huy khả năng và phát triển nhân cách, năng lực bản thân.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <h4><i class="fas fa-star-of-life"></i> GIÁ TRỊ VỀ Y ĐỨC</h4>
+                        <p>Nền tảng của sự phát triển. Là kết quả của tinh thần trách nhiệm, lòng nhiệt huyết, sự hy sinh và tận tụy phục vụ người bệnh.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <h4><i class="fas fa-hand-holding-heart"></i> GIÁ TRỊ VỀ TẬN TÂM</h4>
+                        <p>Luôn lấy người bệnh làm trung tâm. Chăm sóc từ những việc nhỏ nhất, xem bệnh nhân như người nhà.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>PHÒNG KHÁM Y KHOA NHẬT BỔN</h3>
+                    <p style="font-style: italic;">"Chung tay chăm sóc sức khỏe cộng đồng"</p>
+                    <br>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-google"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <h3>THÔNG TIN LIÊN HỆ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 65 Nguyễn Hữu Trí, ấp 57, xã Tân Nhựt, Thành phố Hồ Chí Minh</p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:0908723789" style="color: #bdc3c7;">0908 723 789</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:02873086575" style="color: #bdc3c7;">028 7308 6575</a></p>
+                </div>
+
+                <div class="footer-info">
+                    <h3>GIỜ LÀM VIỆC</h3>
+                    <p><i class="far fa-clock"></i> Thứ 2 - Chủ Nhật: 07:00 - 20:00</p>
+                    <p><i class="fas fa-calendar-check"></i> Làm việc cả ngày lễ và Chủ Nhật</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Phòng Khám Y Khoa Nhật Bổn. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
